@@ -1,12 +1,13 @@
 package io.github.leandro616.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import io.github.leandro616.enums.TipoEmpresa;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,26 +16,26 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "empresa")
+@Table(name = "empresas", schema = "curso_jsf")
 public class Empresa {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "nome_fantasia")
     private String nomeFantasia;
-    
+
     @Column(name = "razao_social")
     private String razaoSocial;
 
     private String cnpj;
 
     @Column(name = "data_fundacao")
-    private LocalDateTime dataFundacao;
+    private LocalDate dataFundacao;
 
     @ManyToOne
-    @JoinColumn(name = "ramo_atividade_id")
+    @JoinColumn(name = "ramo_atividade_id", foreignKey = @ForeignKey(name = "fk_empresas_ramos_atividade"))
     private RamoAtividade ramoAtividade;
 
     @Enumerated(EnumType.STRING)
@@ -72,11 +73,11 @@ public class Empresa {
         this.cnpj = cnpj;
     }
 
-    public LocalDateTime getDataFundacao() {
+    public LocalDate getDataFundacao() {
         return dataFundacao;
     }
 
-    public void setDataFundacao(LocalDateTime dataFundacao) {
+    public void setDataFundacao(LocalDate dataFundacao) {
         this.dataFundacao = dataFundacao;
     }
 
@@ -153,5 +154,5 @@ public class Empresa {
             return false;
         return true;
     }
-    
+
 }
