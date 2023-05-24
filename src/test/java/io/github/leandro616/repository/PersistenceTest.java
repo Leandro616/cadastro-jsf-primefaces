@@ -12,7 +12,7 @@ public class PersistenceTest {
 
     @Test
     void conexaoTest() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("empresas");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("cursoJSF");
         assertNotNull(emf);
 
         EntityManager em = emf.createEntityManager();
