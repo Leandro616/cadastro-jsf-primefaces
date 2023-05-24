@@ -1,4 +1,4 @@
-package io.github.leandro616.repository;
+package io.github.leandro616.persistence;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
