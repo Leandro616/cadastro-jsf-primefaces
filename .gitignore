@@ -1,0 +1,63 @@
+/target/
+/.classpath
+/bin/
+/.settings/
+
+.metadata/
+
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+*.zip
+!test/resources/com/hepta/sgh/rest/recibos.zip		# Para teste		
+
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+.vscode/settings.json
+.vscode/launch.json
+
+.idea
+*.iml
+.factorypath
+/bin/
+*.gz
+${filename-ferias-vencidas}
+${filename-lgpd}
+src/resources/.~lock.CONTRATO_INDIVIDUAL_DE_TRABALHO.odt#
+contratoTrabalho.pdf
+.~lock.DECLARACAO_BANCARIA.odt#
+documento-emitido.pdf
+.~lock.CONTRATO_INDIVIDUAL_DE_TRABALHO.odt#
+documento-emitido.pdf
+temp.xlsx
+*.out
+
+.project
+/.apt_generated/
+/.apt_generated_tests/
+WebContent/resources/jodit-3.2.44/.vscode/tasks.json
+WebContent/resources/jodit-3.2.44/.settings/org.eclipse.wst.validation.prefs
+WebContent/resources/jodit-3.2.44/.buildpath
+src/main/webapp/META-INF/MANIFEST.MF
+src/main/webapp/WEB-INF/faces-config.xml
+src/com/hepta/sgh/persistence/SolicitacaoSelecaoDAO.java
+out/
+
