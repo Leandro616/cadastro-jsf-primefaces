@@ -1,11 +1,12 @@
 package io.github.leandro616.util;
 
+import javax.annotation.Priority;
+import javax.inject.Inject;
+import javax.interceptor.AroundInvoke;
+import javax.interceptor.Interceptor;
+import javax.interceptor.InvocationContext;
+
 import io.github.leandro616.annotations.Transacional;
-import jakarta.annotation.Priority;
-import jakarta.inject.Inject;
-import jakarta.interceptor.AroundInvoke;
-import jakarta.interceptor.Interceptor;
-import jakarta.interceptor.InvocationContext;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
@@ -51,7 +52,7 @@ public class TransacionalInterceptor {
         } catch (Exception e) {
             if (criador)
                 transaction.rollback();
-            
+
             throw e;
         } finally {
             if (transaction.isActive() && criador)

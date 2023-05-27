@@ -2,9 +2,11 @@ package io.github.leandro616.persistence;
 
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+
 import io.github.leandro616.model.Empresa;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
+
 import jakarta.persistence.EntityManager;
 
 @RequestScoped

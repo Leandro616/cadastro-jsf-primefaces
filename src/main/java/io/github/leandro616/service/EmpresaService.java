@@ -1,15 +1,15 @@
 package io.github.leandro616.service;
 
+import javax.inject.Inject;
+
 import io.github.leandro616.annotations.Transacional;
 import io.github.leandro616.model.Empresa;
 import io.github.leandro616.persistence.EmpresaDAO;
-import jakarta.inject.Inject;
 
 public class EmpresaService {
 
     @Inject
     EmpresaDAO dao;
-
 
     @Transacional
     public void salvar(Empresa empresa) {

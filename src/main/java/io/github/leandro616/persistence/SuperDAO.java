@@ -3,7 +3,8 @@ package io.github.leandro616.persistence;
 import java.io.Serializable;
 import java.util.List;
 
-import jakarta.inject.Inject;
+import javax.inject.Inject;
+
 import jakarta.persistence.EntityManager;
 
 public class SuperDAO<T, I extends Serializable> {
