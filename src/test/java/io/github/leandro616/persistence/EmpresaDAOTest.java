@@ -6,36 +6,26 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+import io.github.leandro616.annotations.Transacional;
 import io.github.leandro616.enums.TipoEmpresa;
 import io.github.leandro616.model.Empresa;
 import io.github.leandro616.model.RamoAtividade;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
+@ExtendWith(EntityManagerParameterResolver.class)
 public class EmpresaDAOTest {
 
     static EmpresaDAO dao;
-    static EntityManagerFactory emf;
     static EntityManager em;
 
     @BeforeAll
-    static void beforeAll() {
-        emf = Persistence.createEntityManagerFactory("cursoJSF");
-        em = emf.createEntityManager();
+    static void init(EntityManager em) {
         dao = new EmpresaDAO(em);
-    }
-
-    @AfterAll
-    static void afterEach() {
-        em.close();
-        emf.close();
+        EmpresaDAOTest.em = em;
     }
 
     @Test
@@ -45,6 +35,7 @@ public class EmpresaDAOTest {
     }
 
     @Test
+    @Transacional
     void salvarEmpresa() {
         RamoAtividade ramo = new RamoAtividade();
         ramo.setId(6);

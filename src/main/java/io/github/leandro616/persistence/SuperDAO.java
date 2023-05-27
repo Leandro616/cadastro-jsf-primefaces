@@ -3,20 +3,24 @@ package io.github.leandro616.persistence;
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
-import jakarta.transaction.Transactional;
 
 public class SuperDAO<T, I extends Serializable> {
 
-    private Class<T> clazz;
+    @Inject
     private EntityManager em;
+    private Class<T> clazz;
+
+    public SuperDAO(Class<T> clazz) {
+        this.clazz = clazz;
+    }
 
     public SuperDAO(Class<T> clazz, EntityManager em) {
         this.clazz = clazz;
         this.em = em;
     }
 
-    @Transactional
     public T salvar(T entity) {
         em.merge(entity);
         return entity;

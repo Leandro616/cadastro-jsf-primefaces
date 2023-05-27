@@ -3,14 +3,22 @@ package io.github.leandro616.persistence;
 import java.util.List;
 
 import io.github.leandro616.model.RamoAtividade;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
+@RequestScoped
 public class RamoAtividadeDAO extends SuperDAO<RamoAtividade, Integer> {
 
+    @Inject
     private EntityManager em;
+
+    public RamoAtividadeDAO() {
+        super(RamoAtividade.class);
+    }
 
     public RamoAtividadeDAO(EntityManager em) {
         super(RamoAtividade.class, em);
