@@ -4,6 +4,21 @@
   version="3.1">
 
   <display-name>curso-jsf-primefaces</display-name>
+  <welcome-file-list>
+    <welcome-file>index.xhtml</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Mostra erros mais detalhados, quando tiver em produção basta mudar para Production -->
+  <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
+  </context-param>
+
+  <!-- faz com que os componentes não fiquem salvos no cache. usado somente em desenvolvimento -->
+  <context-param>
+    <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+    <param-value>0</param-value>
+  </context-param>
 
   <!-- CDI -->
   <resource-env-ref>
@@ -14,4 +29,15 @@
   <listener>
     <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
   </listener>
+
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
 </web-app>
