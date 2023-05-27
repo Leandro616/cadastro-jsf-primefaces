@@ -1,7 +1,5 @@
 package io.github.leandro616.util;
 
-import java.util.Objects;
-
 import io.github.leandro616.annotations.Transacional;
 import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
