@@ -25,10 +25,15 @@
       <h:form>
         <h:panelGrid columns="2">
           <h:outputLabel for="razaoSocial" value="Razão Social" />
-          <h:inputText
-            id="razaoSocial"
-            value="#{gestaoEmpresasBean.empresa.razaoSocial}"
-          />
+          <h:panelGroup>
+            <h:inputText
+              id="razaoSocial"
+              value="#{gestaoEmpresasBean.empresa.razaoSocial}"
+              required="true"
+              label="Razão Social"
+            />
+            <h:message for="razaoSocial" />
+          </h:panelGroup>
 
           <h:outputLabel for="nomeFantasia" value="Nome Fantasia" />
           <h:inputText
@@ -37,7 +42,11 @@
           />
 
           <h:outputLabel for="tipo" value="Tipo Empresa" />
-          <h:selectOneMenu id="tipo" value="#{gestaoEmpresasBean.empresa.tipo}">
+          <h:selectOneMenu
+            id="tipo"
+            value="#{gestaoEmpresasBean.empresa.tipo}"
+            required="true"
+          >
             <f:selectItem itemLabel="Selecione..." />
             <f:selectItems
               value="#{gestaoEmpresasBean.tiposEmpresa}"
@@ -58,6 +67,31 @@
             </h:inputText>
             <!-- exibe mensagens de erro do id definido -->
             <h:message for="dataFundacao" />
+          </h:panelGroup>
+
+          <h:outputLabel for="cnpj" value="CNPJ" />
+          <h:panelGroup>
+            <h:inputText
+              id="cnpj"
+              value="#{gestaoEmpresasBean.empresa.cnpj}"
+              label="CNPJ"
+            >
+              <f:validateLength maximum="18" minimum="18" />
+            </h:inputText>
+            <h:message for="cnpj" />
+          </h:panelGroup>
+
+          <h:outputLabel for="faturamento" value="Faturamento" />
+          <h:panelGroup>
+            <h:inputText
+              id="faturamento"
+              value="#{gestaoEmpresasBean.empresa.faturamento}"
+              label="Faturamento"
+            >
+              <f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+              <f:validateDoubleRange minimum="0" />
+            </h:inputText>
+            <h:message for="faturamento" />
           </h:panelGroup>
 
           <h:column />

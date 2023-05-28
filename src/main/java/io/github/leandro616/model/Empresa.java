@@ -170,7 +170,8 @@ public class Empresa {
     @Override
     public String toString() {
         return "Empresa [id=" + id + ", nomeFantasia=" + nomeFantasia + ", razaoSocial=" + razaoSocial + ", cnpj="
-                + cnpj + ", dataFundacao=" + dataFundacao + ", ramoAtividade=" + ramoAtividade + ", tipo=" + tipo + "]";
+                + cnpj + ", dataFundacao=" + dataFundacao + ", ramoAtividade=" + ramoAtividade + ", tipo=" + tipo
+                + ", faturamento=" + faturamento + "]";
     }
 
 }
