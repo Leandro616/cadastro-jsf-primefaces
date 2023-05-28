@@ -24,7 +24,11 @@
 
     <div id="conteudo">
       <h:form>
-        <p:panelGrid columns="2" layout="tabular" styleClass="ui-noborder style">
+        <p:panelGrid
+          columns="2"
+          layout="tabular"
+          styleClass="ui-noborder style"
+        >
           <p:outputLabel for="razaoSocial" value="Razão Social" />
           <h:panelGroup>
             <p:inputText
@@ -103,6 +107,39 @@
             update="@form"
           />
         </p:panelGrid>
+      </h:form>
+
+      <h:form>
+        <p:dataTable
+          var="empresa"
+          value="#{gestaoEmpresasBean.empresas}"
+          paginator="true"
+          rows="5"
+          paginatorPosition="bottom"
+          allowUnsorting="true"
+        >
+          <p:column headerText="Nome" sortBy="#{empresa.nomeFantasia}">
+            <h:outputText value="#{empresa.nomeFantasia}" />
+          </p:column>
+          <p:column headerText="Razão Social">
+            <h:outputText value="#{empresa.razaoSocial}" />
+          </p:column>
+          <p:column headerText="CNPJ">
+            <h:outputText value="#{empresa.cnpj}" />
+          </p:column>
+          <p:column headerText="Data Fundação">
+            <h:outputText value="#{empresa.dataFundacao}" />
+          </p:column>
+          <p:column headerText="Ramo">
+            <h:outputText value="#{empresa.ramoAtividade.descricao}" />
+          </p:column>
+          <p:column headerText="Tipo">
+            <h:outputText value="#{empresa.tipo.descricao}" />
+          </p:column>
+          <p:column headerText="Faturamento">
+            <h:outputText value="#{empresa.faturamento}" />
+          </p:column>
+        </p:dataTable>
       </h:form>
     </div>
 
