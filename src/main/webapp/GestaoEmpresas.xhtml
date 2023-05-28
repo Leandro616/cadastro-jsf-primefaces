@@ -47,8 +47,24 @@
             />
           </h:selectOneMenu>
 
+          <h:outputLabel for="dataFundacao" value="Data Fundação" />
+          <h:panelGroup>
+            <h:inputText
+              id="dataFundacao"
+              value="#{gestaoEmpresasBean.empresa.dataFundacao}"
+              label="Data Fundação"
+            >
+              <f:converter converterId="localDateConverter" />
+            </h:inputText>
+            <!-- exibe mensagens de erro do id definido -->
+            <h:message for="dataFundacao" />
+          </h:panelGroup>
+
           <h:column />
-          <h:commandButton value="Salvar" actionListener="#{gestaoEmpresasBean.salvar}" />
+          <h:commandButton
+            value="Salvar"
+            actionListener="#{gestaoEmpresasBean.salvar}"
+          />
         </h:panelGrid>
       </h:form>
     </div>

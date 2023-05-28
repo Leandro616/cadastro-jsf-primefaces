@@ -1,5 +1,6 @@
 package io.github.leandro616.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import io.github.leandro616.enums.TipoEmpresa;
@@ -40,6 +41,9 @@ public class Empresa {
 
     @Enumerated(EnumType.STRING)
     private TipoEmpresa tipo;
+
+    @Column(precision = 10, scale = 2)
+    private BigDecimal faturamento;
 
     public Integer getId() {
         return id;
@@ -95,6 +99,14 @@ public class Empresa {
 
     public void setTipo(TipoEmpresa tipo) {
         this.tipo = tipo;
+    }
+
+    public BigDecimal getFaturamento() {
+        return faturamento;
+    }
+
+    public void setFaturamento(BigDecimal faturamento) {
+        this.faturamento = faturamento;
     }
 
     @Override
