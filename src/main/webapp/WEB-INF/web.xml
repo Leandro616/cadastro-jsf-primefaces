@@ -5,7 +5,7 @@
 
   <display-name>curso-jsf-primefaces</display-name>
   <welcome-file-list>
-    <welcome-file>index.xhtml</welcome-file>
+    <welcome-file>GestaoEmpresas.xhtml</welcome-file>
   </welcome-file-list>
   
   <!-- Mostra erros mais detalhados, quando tiver em produção basta mudar para Production -->
