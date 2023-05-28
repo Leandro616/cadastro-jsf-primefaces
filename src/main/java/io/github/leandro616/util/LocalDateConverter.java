@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.convert.ConverterException;
 import javax.faces.convert.DateTimeConverter;
 
 /**
@@ -19,10 +21,16 @@ public class LocalDateConverter extends DateTimeConverter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
+
         if (Objects.isNull(value) || value.trim().isEmpty())
             return null;
 
-        return LocalDate.parse(value, FORMATTER);
+        try {
+            return LocalDate.parse(value, FORMATTER);
+
+        } catch (Exception e) {
+            throw new ConverterException(new FacesMessage("Informe uma data válida, por exemplo: 14/07/2017"), e);
+        }
     }
 
     @Override
@@ -30,8 +38,13 @@ public class LocalDateConverter extends DateTimeConverter {
         if (Objects.isNull(value))
             return "";
 
-        LocalDate date = (LocalDate) value;
-        return date.format(FORMATTER);
+        try {
+            LocalDate date = (LocalDate) value;
+            return date.format(FORMATTER);
+
+        } catch (Exception e) {
+            throw new ConverterException(new FacesMessage("Informe uma data válida, por exemplo: 14/07/2017"), e);
+        }
     }
 
 }
