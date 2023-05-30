@@ -31,6 +31,12 @@
       <version>12.0.0</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.webjars.npm</groupId>
+      <artifactId>primeflex</artifactId>
+      <version>3.2.1</version>
+    </dependency>
+
     <!-- scopo provided - coloca a dependencia no momento de compilação e teste -->
     <!-- mas não coloca no pacote em tempo de execução -->
     <!-- neste caso o Tomcat já possui essa dependencia por isso não precisamos dela em tempo de
