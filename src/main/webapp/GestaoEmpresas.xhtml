@@ -94,6 +94,45 @@
     </h:form>
 
     <h:form>
+      <p:toolbar>
+        <p:toolbarGroup>
+          <p:commandButton
+            type="button"
+            value="Nova Empresa"
+            icon="pi pi-plus-circle"
+          />
+          <p:commandButton
+            type="button"
+            value="Exportar Excel"
+            icon="pi pi-file-excel"
+            styleClass="ui-button-success ml-2"
+          />
+
+          <i class="pi pi-pause mx-3"></i>
+          <p:commandButton
+            type="button"
+            title="Editar"
+            icon="pi pi-pencil"
+            styleClass="ui-button-warning mr-2"
+          />
+          <p:commandButton
+            type="button"
+            title="Excluir"
+            icon="pi pi-trash"
+            styleClass="ui-button-danger"
+          />
+        </p:toolbarGroup>
+        <p:toolbarGroup align="right">
+          <p:inputText placeholder="Digite um termo para pesquisa..." styleClass="mr-2" />
+
+          <p:commandButton
+            type="button"
+            value="Pesquisar"
+            icon="pi pi-search"
+          />
+        </p:toolbarGroup>
+      </p:toolbar>
+
       <p:dataTable
         var="empresa"
         value="#{gestaoEmpresasBean.empresas}"
