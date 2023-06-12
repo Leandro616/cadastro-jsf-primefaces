@@ -63,4 +63,9 @@ public class RamoAtividade {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "RamoAtividade [id=" + id + ", descricao=" + descricao + "]";
+    }
+
 }

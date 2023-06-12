@@ -38,7 +38,7 @@ public class RamoAtividadeDAO extends SuperDAO<RamoAtividade, Integer> {
         CriteriaQuery<RamoAtividade> criteria = builder.createQuery(RamoAtividade.class);
         Root<RamoAtividade> root = criteria.from(RamoAtividade.class);
         criteria.select(root);
-        criteria.where(builder.like(root.get("descricao"), nome + "%"));
+        criteria.where(builder.like(builder.lower(root.get("descricao")), nome.toLowerCase() + "%"));
 
         return em.createQuery(criteria).getResultList();
 

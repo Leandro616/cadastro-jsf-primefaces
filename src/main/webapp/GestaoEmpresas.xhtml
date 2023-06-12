@@ -129,8 +129,9 @@
               value="#{gestaoEmpresasBean.empresa.nomeFantasia}"
             />
           </div>
+
           <div class="field col-12 md:col-6">
-            <p:outputLabel for="tipo" value="Tipo Empresa" />
+            <p:outputLabel for="tipo" value="Tipo de Empresa" />
             <p:selectOneMenu
               id="tipo"
               value="#{gestaoEmpresasBean.empresa.tipo}"
@@ -145,6 +146,7 @@
               />
             </p:selectOneMenu>
           </div>
+
           <div class="field col-12 md:col-6">
             <p:outputLabel for="dataFundacao" value="Data Fundação" />
             <p:inputText
@@ -155,16 +157,35 @@
               <f:converter converterId="localDateConverter" />
             </p:inputText>
           </div>
+
           <div class="field col-12 md:col-6">
             <p:outputLabel for="cnpj" value="CNPJ" />
-            <p:inputText
+            <p:inputMask
               id="cnpj"
+              size="18"
+              maxlength="18"
+              mask="99.999.999/9999-99"
               value="#{gestaoEmpresasBean.empresa.cnpj}"
               label="CNPJ"
+              styleClass="w-full"
             >
               <f:validateLength maximum="18" minimum="18" />
-            </p:inputText>
+            </p:inputMask>
           </div>
+
+          <div class="field col-12 md:col-6">
+            <p:outputLabel for="ramoAtividade" value="Ramo" />
+            <p:autoComplete
+              var="ramo"
+              id="ramoAtividade"
+              value="#{gestaoEmpresasBean.empresa.ramoAtividade}"
+              completeMethod="#{gestaoEmpresasBean.completarRamoAtividade}"
+              converter="#{gestaoEmpresasBean.ramoAtividadeConverter}"
+              itemLabel="#{ramo.descricao}"
+              itemValue="#{ramo}"
+            />
+          </div>
+
           <div class="field col-12 md:col-6">
             <p:outputLabel for="faturamento" value="Faturamento" />
             <p:inputText
@@ -182,7 +203,7 @@
             <p:commandButton
               value="Salvar"
               actionListener="#{gestaoEmpresasBean.salvar}"
-              update="@form"
+              update=":formTable:empresasDataTable"
               styleClass="w-auto"
             />
           </div>

@@ -4,14 +4,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.convert.Converter;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import io.github.leandro616.enums.TipoEmpresa;
 import io.github.leandro616.model.Empresa;
+import io.github.leandro616.model.RamoAtividade;
+import io.github.leandro616.persistence.RamoAtividadeDAO;
 import io.github.leandro616.service.EmpresaService;
 import io.github.leandro616.util.FacesMessages;
+import io.github.leandro616.util.RamoAtividadeConverter;
 
 @Named
 @ViewScoped
@@ -24,6 +28,11 @@ public class GestaoEmpresasBean implements Serializable {
 
     @Inject
     private FacesMessages messages;
+
+    @Inject
+    private RamoAtividadeDAO ramoAtividadeDAO;
+
+    private Converter ramoAtividadeConverter;
 
     private Empresa empresa = new Empresa();
     private List<Empresa> empresas = new ArrayList<>();
@@ -45,6 +54,21 @@ public class GestaoEmpresasBean implements Serializable {
         }
     }
 
+    /**
+     * metodo que retorna a lista de ramos de acordo com o que o 
+     * usuario digita no autocomplete
+     * 
+     * @param termo
+     * @return lista de ramos de atividade
+     */
+    public List<RamoAtividade> completarRamoAtividade(String termo) {
+        List<RamoAtividade> ramos = ramoAtividadeDAO.buscarPorNome(termo);
+
+        ramoAtividadeConverter = new RamoAtividadeConverter(ramos);
+
+        return ramos;
+    }
+
     public Empresa getEmpresa() {
         return empresa;
     }
@@ -63,6 +87,10 @@ public class GestaoEmpresasBean implements Serializable {
 
     public void setTermoPesquisa(String termoPesquisa) {
         this.termoPesquisa = termoPesquisa;
+    }
+
+    public Converter getRamoAtividadeConverter() {
+        return ramoAtividadeConverter;
     }
 
 }
