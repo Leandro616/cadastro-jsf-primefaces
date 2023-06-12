@@ -149,13 +149,15 @@
 
           <div class="field col-12 md:col-6">
             <p:outputLabel for="dataFundacao" value="Data Fundação" />
-            <p:inputText
+
+            <p:datePicker
+              locale="br"
               id="dataFundacao"
               value="#{gestaoEmpresasBean.empresa.dataFundacao}"
               label="Data Fundação"
             >
               <f:converter converterId="localDateConverter" />
-            </p:inputText>
+            </p:datePicker>
           </div>
 
           <div class="field col-12 md:col-6">
