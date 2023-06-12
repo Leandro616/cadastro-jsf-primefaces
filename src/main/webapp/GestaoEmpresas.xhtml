@@ -51,6 +51,8 @@
         </p:toolbarGroup>
         <p:toolbarGroup align="right">
           <p:inputText
+            onkeydown="pesquisar(event)"
+            id="termoPesquisa"
             value="#{gestaoEmpresasBean.termoPesquisa}"
             placeholder="Digite um termo para pesquisa..."
             styleClass="mr-2"
@@ -60,9 +62,10 @@
           <!-- como o primefaces usa ajax ele não atualiza todos os componentes em uma requisisão -->
           <!-- por isso usamos aqui o update passando o id do componente ou um alias -->
           <p:commandButton
+            widgetVar="btnPesquisarWidgetVar"
             value="Pesquisar"
             icon="pi pi-search"
-            process=":formToolbar"
+            process="@this termoPesquisa"
             actionListener="#{gestaoEmpresasBean.pesquisar}"
             update=":formTable:empresasDataTable"
           />
@@ -212,5 +215,20 @@
         </div>
       </p:dialog>
     </h:form>
+
+    <h:outputScript library="assets" name="primefaces-locales.js" />
+    <script>
+      // função para pesquisar ao apertar o enter no input da pesquisa
+      // aqui ele somente clica no botão pesquisar que já está chamando os metodos necessários
+      function pesquisar(event) {
+        if (event.keyCode == 13) {
+          event.preventDefault();
+
+          PF("btnPesquisarWidgetVar").jq.click();
+        }
+
+        return false;
+      }
+    </script>
   </ui:define>
 </ui:composition>
