@@ -34,16 +34,28 @@ public class GestaoEmpresasBean implements Serializable {
 
     private Converter ramoAtividadeConverter;
 
-    private Empresa empresa = new Empresa();
+    private Empresa empresa;
     private List<Empresa> empresas = new ArrayList<>();
     private String termoPesquisa;
+
+    public void prepararNovaEmpresa() {
+        System.out.println("preparando nova empresa");
+        empresa = new Empresa();
+    }
 
     public void todasEmpresas() {
         empresas = service.buscarPorNome(null);
     }
 
     public void salvar() {
-        System.out.println(empresa);
+        service.salvar(empresa);
+
+        if (jaHouvePesquisa())
+            pesquisar();
+        else
+            todasEmpresas();
+
+        messages.info("Empresa cadastrada com sucesso!");
     }
 
     public void pesquisar() {
@@ -67,6 +79,10 @@ public class GestaoEmpresasBean implements Serializable {
         ramoAtividadeConverter = new RamoAtividadeConverter(ramos);
 
         return ramos;
+    }
+
+    private boolean jaHouvePesquisa() {
+        return termoPesquisa != null && !termoPesquisa.isBlank();
     }
 
     public Empresa getEmpresa() {

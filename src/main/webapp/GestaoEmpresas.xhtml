@@ -23,10 +23,12 @@
       <p:toolbar>
         <p:toolbarGroup>
           <p:commandButton
-            type="button"
             value="Nova Empresa"
             icon="pi pi-plus-circle"
-            onclick="PF('DialogFormEmpresaVar').show()"
+            process="@this"
+            actionListener="#{gestaoEmpresasBean.prepararNovaEmpresa}"
+            oncomplete="PF('DialogWidgetVar').show()"
+            update="formTable"
           />
           <p:commandButton
             type="button"
@@ -106,9 +108,14 @@
         </p:column>
       </p:dataTable>
 
+      <!-- propriedade 'rendered' define uma condição para o componente ser renderizado -->
+      <!-- nesse caso o dialog só será renderizado quando a empresa for instanciada -->
+      <!-- evitando um null pointer -->
       <p:dialog
+        id="empresaDialog"
+        rendered="#{gestaoEmpresasBean.empresa ne null}"
         header="Nova empresa"
-        widgetVar="DialogFormEmpresaVar"
+        widgetVar="DialogWidgetVar"
         modal="true"
         resizable="false"
         closeOnEscape="true"
@@ -207,8 +214,9 @@
             <!-- por isso usamos aqui o update passando o id do componente ou um alias nesse caso -->
             <p:commandButton
               value="Salvar"
-              actionListener="#{gestaoEmpresasBean.salvar}"
               update=":formTable:empresasDataTable"
+              actionListener="#{gestaoEmpresasBean.salvar}"
+              oncomplete="PF('DialogWidgetVar').hide()"
               styleClass="w-auto"
             />
           </div>
