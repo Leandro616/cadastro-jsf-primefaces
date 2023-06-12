@@ -25,10 +25,12 @@ public class EmpresaDAO extends SuperDAO<Empresa, Integer> {
     }
 
     public List<Empresa> buscarPorNome(String nome) {
-        String hql = " FROM Empresa e WHERE e.nomeFantasia like :nome";
+        String hql = " FROM Empresa e "
+        + " WHERE UPPER(e.nomeFantasia) like :nome "
+        + " OR UPPER(e.razaoSocial) like :nome ";
 
         return em.createQuery(hql, Empresa.class)
-                .setParameter("nome", nome + "%")
+                .setParameter("nome", nome.toUpperCase() + "%")
                 .getResultList();
     }
 }

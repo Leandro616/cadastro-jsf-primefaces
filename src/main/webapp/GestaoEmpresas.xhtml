@@ -11,8 +11,15 @@
   <ui:define name="titulo"> Empresas </ui:define>
 
   <ui:define name="conteudo">
-   
-    <h:form>
+    <f:metadata>
+      <f:viewAction action="#{gestaoEmpresasBean.todasEmpresas}" />
+    </f:metadata>
+
+    <h:form id="formToolbar">
+      <p:messages closable="true">
+        <p:autoUpdate />
+      </p:messages>
+
       <p:toolbar>
         <p:toolbarGroup>
           <p:commandButton
@@ -44,19 +51,28 @@
         </p:toolbarGroup>
         <p:toolbarGroup align="right">
           <p:inputText
+            value="#{gestaoEmpresasBean.termoPesquisa}"
             placeholder="Digite um termo para pesquisa..."
             styleClass="mr-2"
+            size="30"
           />
 
+          <!-- como o primefaces usa ajax ele não atualiza todos os componentes em uma requisisão -->
+          <!-- por isso usamos aqui o update passando o id do componente ou um alias -->
           <p:commandButton
-            type="button"
             value="Pesquisar"
             icon="pi pi-search"
+            process=":formToolbar"
+            actionListener="#{gestaoEmpresasBean.pesquisar}"
+            update=":formTable:empresasDataTable"
           />
         </p:toolbarGroup>
       </p:toolbar>
+    </h:form>
 
+    <h:form id="formTable">
       <p:dataTable
+        id="empresasDataTable"
         var="empresa"
         value="#{gestaoEmpresasBean.empresas}"
         paginator="true"
@@ -87,7 +103,7 @@
         </p:column>
       </p:dataTable>
 
-      <p:dialog 
+      <p:dialog
         header="Nova empresa"
         widgetVar="DialogFormEmpresaVar"
         modal="true"
@@ -95,7 +111,6 @@
         closeOnEscape="true"
         width="720"
       >
-
         <div class="formgrid grid ui-fluid">
           <div class="field col-12 md:col-6">
             <p:outputLabel for="razaoSocial" value="Razão Social" />
@@ -167,12 +182,11 @@
             <p:commandButton
               value="Salvar"
               actionListener="#{gestaoEmpresasBean.salvar}"
-              update="@form" 
+              update="@form"
               styleClass="w-auto"
             />
           </div>
         </div>
-       
       </p:dialog>
     </h:form>
   </ui:define>
